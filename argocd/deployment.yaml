@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops
+  template:
+    metadata:
+      labels:
+        app: devops
+    spec:
+      containers:
+      - name: devops-container
+        image: erenuzun/devops:v1
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 100m  # 0.1 CPU çekirdeği talep edilir
+            memory: 256Mi  # 256 MiB bellek talep edilir
+          limits:
+            cpu: 200m  # 0.2 CPU çekirdeği ile sınırlanır
+            memory: 512Mi  # 512 MiB bellek ile sınırlanır
